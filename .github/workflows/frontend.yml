@@ -14,26 +14,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - run: cd ./frontend
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      - run: |
-          node -v
-          npm -v
-          yarn -v
+      - name: Show Version
+        run: node -v
+        run: npm -v
+        run: yarn -v
 
       - name: Install
-        run: yarn install
+        run: cd ./frontend && yarn --frozen-lockfile
 
       - name: Build
-        run: yarn build:github
+        run: cd ./frontend && yarn build:github
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: gh-pages
-          folder: build
+          folder: ./frontend/build
