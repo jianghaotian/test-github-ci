@@ -21,9 +21,9 @@ jobs:
 
       - name: Show Version
         run: |
-          echo node: ${node -v}
-          echo npm: ${npm -v}
-          echo yarn: ${yarn -v}
+          node -v
+          npm -v
+          yarn -v
 
       - name: Install
         run: cd ./frontend && yarn --frozen-lockfile
